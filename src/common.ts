@@ -64,11 +64,11 @@ function parseFtpURL(ftpUrl: string): FtpConnectionInfo {
     throw new TypeError("ftp username must be provided")
   }
 
-  if (password) {
+  if (!password) {
     throw new TypeError("ftp password must be provide")
   }
 
-  if (pathname === "" || pathname === "/") {
+  if (!pathname || pathname === "/") {
     throw new TypeError("ftp path cannot be empty")
   }
 
