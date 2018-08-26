@@ -10,11 +10,14 @@ const config: Configuration = {
       {
         test: /\.tsx?$/,
         loader: "ts-loader",
+        options: {
+          configFile: "tsconfig.json",
+        },
       },
     ],
   },
   resolve: {
-    extensions: [".ts"],
+    extensions: [".tsx", ".ts", ".js"],
   },
   output: {
     filename: "main.js",

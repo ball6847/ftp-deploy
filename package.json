@@ -1,8 +1,11 @@
 {
   "name": "ftp-deploy-cli",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "dist/main.js",
+  "bin": {
+    "ftp-deploy": "./dist/main.js"
+  },
   "scripts": {
     "build": "webpack-cli --mode production --progress"
   },
