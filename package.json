@@ -10,7 +10,7 @@
     "build": "webpack-cli --mode production --progress"
   },
   "author": "Porawit Poboonma",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@types/node": "^10.9.2",
     "@types/webpack": "^4.4.11",
