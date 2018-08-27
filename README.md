@@ -37,3 +37,8 @@ ftp-deploy dist/ ftp://demo:demo@localhost:21/var/www
 - Add more helpful messages.
 - Add `--verbose` option.
 - Add `--clear-target-dir` option (make it safe by default).
+
+### CREDITS
+
+- https://github.com/tj/commander.js/
+- https://github.com/patrickjuchli/basic-ftp
