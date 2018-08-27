@@ -4,7 +4,13 @@ Simple command-line interface for ftp-deploy
 
 This project is work-in-progress.
 
-### Usage:
+### Installation
+
+```sh
+npm install --save-dev @ball6847/ftp-deploy
+```
+
+### Usage
 
 ```sh
 Usage: ftp-deploy [options] <local> <remote>
@@ -18,8 +24,7 @@ Options:
 ### Example
 
 ```sh
-# install via npm
-npm install --save-dev @ball6847/ftp-deploy
+
 
 # build your frontend app, let's say angular
 ng build --prod
