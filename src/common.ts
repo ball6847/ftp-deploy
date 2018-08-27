@@ -1,30 +1,38 @@
+import { Client } from "basic-ftp"
 import chalk from "chalk"
 import fs from "fs"
-import FtpDeploy from "ftp-deploy"
 import path from "path"
 import { DeploymentInfo, FtpConnectionInfo } from "./interface"
 
 /**
  * Deploy given directory to remote server
  *
- * TODO: add success events callback via function parameters
- * TODO: add options for --include --exclude --delete-remote
+ * TODO: add options for -v --verbose
  *
  */
-export function deploy(src: string, ftp: FtpConnectionInfo): Promise<any> {
-  const ftpDeploy = new FtpDeploy()
+export async function deploy(src: string, ftp: FtpConnectionInfo) {
+  const client = new Client()
 
-  return ftpDeploy.deploy({
-    user: ftp.username,
-    password: ftp.password,
-    host: ftp.hostname,
-    port: ftp.port,
-    localRoot: src,
-    remoteRoot: ftp.pathname,
-    include: ["*", "**/*"],
-    exclude: [""],
-    deleteRemote: false,
-  })
+  // client.ftp.verbose = true
+
+  try {
+    // connect
+    await client.access({
+      host: ftp.hostname,
+      user: ftp.username,
+      password: ftp.password,
+      secure: ftp.secure,
+    })
+
+    // deloy
+    await client.ensureDir(ftp.pathname)
+    await client.clearWorkingDir()
+    await client.uploadDir(src)
+  } catch (err) {
+    console.log(err)
+  }
+
+  client.close()
 }
 
 /**
@@ -56,8 +64,8 @@ export function validateArgs(localInput: string, remoteInput: string): Deploymen
 function parseFtpURL(ftpUrl: string): FtpConnectionInfo {
   const { protocol, username, password, hostname, port, pathname } = new URL(ftpUrl)
 
-  if (protocol !== "ftp:") {
-    throw new TypeError("protocol must be ftp")
+  if (!/^s?ftp\:$/.test(protocol)) {
+    throw new TypeError("protocol must be ftp or sftp")
   }
 
   if (!username) {
@@ -78,6 +86,7 @@ function parseFtpURL(ftpUrl: string): FtpConnectionInfo {
     hostname,
     port: port || "21",
     pathname,
+    secure: protocol === "sftp:",
   }
 }
 

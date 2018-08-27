@@ -1,6 +1,6 @@
 import commander from "commander"
 import pkg from "../package.json"
-import { deploy, error, success, validateArgs } from "./common"
+import { deploy, error, validateArgs } from "./common"
 
 commander
   .version(pkg.version)
@@ -11,8 +11,8 @@ commander
 
       // start deployment
       deploy(src, ftp)
-        .then(() => success("Done."))
-        .catch(() => error("Failed"))
+      // .then(() => success("Done."))
+      // .catch(() => error("Failed"))
     } catch (e) {
       if (e instanceof TypeError) {
         error(e.message)

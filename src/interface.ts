@@ -4,6 +4,7 @@ export interface FtpConnectionInfo {
   hostname: string
   port: string
   pathname: string
+  secure: boolean
 }
 
 export interface DeploymentInfo {
