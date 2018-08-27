@@ -1,6 +1,7 @@
 # FTP Deploy
 
-[![npm version](https://img.shields.io/npm/v/@ball6847/ftp-deploy.svg)](https://github.com/ball6847/ftp-deploy)
+[![Build Status](https://travis-ci.org/ball6847/ftp-deploy.svg?branch=master)](https://travis-ci.org/ball6847/ftp-deploy)
+[![npm version](https://img.shields.io/npm/v/@ball6847/ftp-deploy.svg)](https://www.npmjs.com/package/@ball6847/ftp-deploy)
 
 Simple command-line interface for ftp-deploy
 
