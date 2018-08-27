@@ -1,5 +1,5 @@
 {
-  "name": "ftp-deploy-cli-demo",
+  "name": "ftp-deploy-demo",
   "version": "0.0.1",
   "description": "Demonstration for ftp deploy",
   "main": "index.js",
