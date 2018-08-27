@@ -42,6 +42,7 @@ ftp-deploy dist/ ftp://demo:demo@localhost:21/var/www
 
 ### TODO
 
+- Create docker image (dockerhub automated build)
 - Add more helpful messages.
 - Add `--verbose` option.
 - Add `--clear-target-dir` option (make it safe by default).
