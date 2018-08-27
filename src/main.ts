@@ -11,8 +11,6 @@ commander
 
       // start deployment
       deploy(src, ftp)
-      // .then(() => success("Done."))
-      // .catch(() => error("Failed"))
     } catch (e) {
       if (e instanceof TypeError) {
         error(e.message)

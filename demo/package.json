@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "ftp-deploy-cli": "file:.."
+    "@ball6847/ftp-deploy": "0.0.1"
   }
 }
