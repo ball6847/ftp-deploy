@@ -23,7 +23,7 @@ export function deploy(src: string, ftp: FtpConnectionInfo): Promise<any> {
     remoteRoot: ftp.pathname,
     include: ["*", "**/*"],
     exclude: [""],
-    deleteRemote: true,
+    deleteRemote: false,
   })
 }
 

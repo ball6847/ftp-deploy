@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  ftp:
+    image: forumi0721alpinex64build/alpine-x64-pureftpd:latest
+    ports:
+      - 20:20/tcp
+      - 21:21/tcp
+      - 60000-60099:60000-60099/tcp
+    volumes:
+      - ./data:/data
+    environment:
+      USER_NAME: demo
+      USER_PASSWD: demo
+      FTP_PUBLIC_HOST: localhost
+      FTP_SHARE: /data
