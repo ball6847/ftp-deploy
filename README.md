@@ -1,7 +1,8 @@
 # FTP Deploy
 
 [![Build Status](https://travis-ci.org/ball6847/ftp-deploy.svg?branch=master)](https://travis-ci.org/ball6847/ftp-deploy)
-[![npm version](https://img.shields.io/npm/v/@ball6847/ftp-deploy.svg)](https://www.npmjs.com/package/@ball6847/ftp-deploy)
+[![npm version](https://img.shields.io/npm/v/@ball6847/ftp-deploy.svg?logo=npm)](https://www.npmjs.com/package/@ball6847/ftp-deploy)
+[![docker image](https://img.shields.io/docker/build/ball6847/ftp-deploy.svg?logo=docker)](https://hub.docker.com/r/ball6847/ftp-deploy/)
 
 Simple command-line interface for ftp-deploy
 
@@ -42,7 +43,6 @@ ftp-deploy dist/ ftp://demo:demo@localhost:21/var/www
 
 ### TODO
 
-- Create docker image (dockerhub automated build)
 - Add more helpful messages.
 - Add `--verbose` option.
 - Add `--clear-target-dir` option (make it safe by default).
