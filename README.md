@@ -10,7 +10,7 @@ This project is work-in-progress.
 ### Installation
 
 ```sh
-npm install --save-dev @ball6847/ftp-deploy
+npm install -g @ball6847/ftp-deploy
 ```
 
 ### Usage
