@@ -1,6 +1,6 @@
 {
   "name": "@ball6847/ftp-deploy",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Simple command-line interface for ftp-deploy",
   "author": "Porawit Poboonma",
   "main": "dist/main.js",
