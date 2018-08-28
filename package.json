@@ -2,6 +2,7 @@
   "name": "@ball6847/ftp-deploy",
   "version": "0.0.1",
   "description": "Simple command-line interface for ftp-deploy",
+  "author": "Porawit Poboonma",
   "main": "dist/main.js",
   "bin": {
     "ftp-deploy": "./dist/main.js"
@@ -9,7 +10,9 @@
   "scripts": {
     "build": "webpack-cli --mode production --progress"
   },
-  "author": "Porawit Poboonma",
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^10.9.2",
