@@ -21,6 +21,7 @@ export async function deploy(src: string, ftp: FtpConnectionInfo) {
       host: ftp.hostname,
       user: ftp.username,
       password: ftp.password,
+      port: ftp.port,
       secure: ftp.secure,
     })
 
@@ -28,6 +29,7 @@ export async function deploy(src: string, ftp: FtpConnectionInfo) {
     await client.ensureDir(ftp.pathname)
     await client.clearWorkingDir()
     await client.uploadDir(src)
+    console.log("Done!")
   } catch (err) {
     console.log(err)
   }
@@ -64,7 +66,7 @@ export function validateArgs(localInput: string, remoteInput: string): Deploymen
 function parseFtpURL(ftpUrl: string): FtpConnectionInfo {
   const { protocol, username, password, hostname, port, pathname } = new URL(ftpUrl)
 
-  if (!/^s?ftp\:$/.test(protocol)) {
+  if (!/^ftps?\:$/.test(protocol)) {
     throw new TypeError("protocol must be ftp or sftp")
   }
 
@@ -81,12 +83,14 @@ function parseFtpURL(ftpUrl: string): FtpConnectionInfo {
   }
 
   return {
-    username,
+    // username can contains backslash on some platform
+    // make sure argument is encoded in command line
+    username: decodeURIComponent(username),
     password,
     hostname,
     port: port || "21",
     pathname,
-    secure: protocol === "sftp:",
+    secure: protocol === "ftps:",
   }
 }
 

@@ -36,7 +36,7 @@ ng build --prod
 # deploy content of dist directory to /var/www of remote ftp server
 ftp-deploy dist/ ftp://demo:demo@localhost:21/var/www
 
-# you can use sftp if needed
+# you can use ftps if needed
 ```
 
 **Warning**: above example will create remote directory if it does not exist, **remove any content inside** and upload all files to it
