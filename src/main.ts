@@ -15,6 +15,7 @@ commander
       if (e instanceof TypeError) {
         error(e.message)
       }
+      process.exit(255)
     }
   })
   .parse(process.argv)

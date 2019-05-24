@@ -3,11 +3,13 @@ import chalk from "chalk"
 import fs from "fs"
 import path from "path"
 import { DeploymentInfo, FtpConnectionInfo } from "./interface"
-
+import retry from 'async-retry'
+;
 /**
  * Deploy given directory to remote server
  *
  * TODO: add options for -v --verbose
+ * TODO: support single file upload
  *
  */
 export async function deploy(src: string, ftp: FtpConnectionInfo) {
@@ -15,7 +17,7 @@ export async function deploy(src: string, ftp: FtpConnectionInfo) {
 
   // client.ftp.verbose = true
 
-  try {
+  const upload = async () => {
     // connect
     await client.access({
       host: ftp.hostname,
@@ -25,14 +27,17 @@ export async function deploy(src: string, ftp: FtpConnectionInfo) {
       secure: ftp.secure,
     })
 
-    // deloy
+    // deploy
     await client.ensureDir(ftp.pathname)
     await client.clearWorkingDir()
     await client.uploadDir(src)
-    console.log("Done!")
-  } catch (err) {
-    console.log(err)
+    success("Done!")
   }
+
+  await retry(upload, {
+    retry: 5,
+    onRetry: () => error('Uploading failed!, retrying ...')
+  })
 
   client.close()
 }
@@ -59,7 +64,7 @@ export function validateArgs(localInput: string, remoteInput: string): Deploymen
 }
 
 /**
- * Parse url ensure it's a ftp with neccessary data
+ * Parse url ensure it's a ftp with necessary data
  *
  * @param ftpUrl
  */
