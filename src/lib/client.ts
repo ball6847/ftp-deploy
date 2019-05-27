@@ -49,18 +49,15 @@ export async function deploy(src: string, ftp: IFtpConnectionInfo) {
  * @param remoteInput
  */
 export function validateArgs(localInput: string, remoteInput: string): IDeploymentInfo {
-  const local = path.resolve(localInput)
+  const src = path.resolve(localInput)
 
-  if (!fs.existsSync(local)) {
+  if (!fs.existsSync(src)) {
     throw new TypeError("Input files not found")
   }
 
   const ftp = parseFtpURL(remoteInput)
 
-  return {
-    src: local,
-    ftp,
-  }
+  return { src, ftp }
 }
 
 /**
@@ -68,11 +65,11 @@ export function validateArgs(localInput: string, remoteInput: string): IDeployme
  *
  * @param ftpUrl
  */
-function parseFtpURL(ftpUrl: string): IFtpConnectionInfo {
+export function parseFtpURL(ftpUrl: string): IFtpConnectionInfo {
   const { protocol, username, password, hostname, port, pathname } = new URL(ftpUrl)
 
   if (!/^ftps?\:$/.test(protocol)) {
-    throw new TypeError("protocol must be ftp or sftp")
+    throw new TypeError("protocol must be ftp or ftp(s)")
   }
 
   if (!username) {
