@@ -1,9 +1,7 @@
 import commander from "commander"
-import pkg from "../package.json"
 import { deploy, error, validateArgs } from "./common"
 
 commander
-  .version(pkg.version)
   .arguments("<local> <remote>")
   .action((localInput: string, remoteInput: string) => {
     try {

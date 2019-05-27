@@ -1,4 +1,4 @@
-export interface FtpConnectionInfo {
+export interface IFtpConnectionInfo {
   username: string
   password: string
   hostname: string
@@ -7,7 +7,7 @@ export interface FtpConnectionInfo {
   secure: boolean
 }
 
-export interface DeploymentInfo {
+export interface IDeploymentInfo {
   src: string
-  ftp: FtpConnectionInfo
+  ftp: IFtpConnectionInfo
 }

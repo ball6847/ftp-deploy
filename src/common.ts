@@ -1,10 +1,9 @@
+import retry from "async-retry"
 import { Client } from "basic-ftp"
 import chalk from "chalk"
 import fs from "fs"
 import path from "path"
-import { DeploymentInfo, FtpConnectionInfo } from "./interface"
-import retry from 'async-retry'
-;
+import { IDeploymentInfo, IFtpConnectionInfo } from "./interface"
 /**
  * Deploy given directory to remote server
  *
@@ -12,7 +11,7 @@ import retry from 'async-retry'
  * TODO: support single file upload
  *
  */
-export async function deploy(src: string, ftp: FtpConnectionInfo) {
+export async function deploy(src: string, ftp: IFtpConnectionInfo) {
   const client = new Client()
 
   // client.ftp.verbose = true
@@ -36,7 +35,7 @@ export async function deploy(src: string, ftp: FtpConnectionInfo) {
 
   await retry(upload, {
     retry: 5,
-    onRetry: () => error('Uploading failed!, retrying ...')
+    onRetry: () => error("Uploading failed!, retrying ..."),
   })
 
   client.close()
@@ -48,7 +47,7 @@ export async function deploy(src: string, ftp: FtpConnectionInfo) {
  * @param localInput
  * @param remoteInput
  */
-export function validateArgs(localInput: string, remoteInput: string): DeploymentInfo {
+export function validateArgs(localInput: string, remoteInput: string): IDeploymentInfo {
   const local = path.resolve(localInput)
 
   if (!fs.existsSync(local)) {
@@ -68,7 +67,7 @@ export function validateArgs(localInput: string, remoteInput: string): Deploymen
  *
  * @param ftpUrl
  */
-function parseFtpURL(ftpUrl: string): FtpConnectionInfo {
+function parseFtpURL(ftpUrl: string): IFtpConnectionInfo {
   const { protocol, username, password, hostname, port, pathname } = new URL(ftpUrl)
 
   if (!/^ftps?\:$/.test(protocol)) {
@@ -105,6 +104,7 @@ function parseFtpURL(ftpUrl: string): FtpConnectionInfo {
  * @param message
  */
 export function error(message: string) {
+  // tslint:disable-next-line:no-console
   console.log(chalk.red(message))
 }
 
@@ -114,5 +114,6 @@ export function error(message: string) {
  * @param message
  */
 export function success(message: string) {
+  // tslint:disable-next-line:no-console
   console.log(chalk.green(message))
 }

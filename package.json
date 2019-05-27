@@ -8,7 +8,7 @@
     "ftp-deploy": "./dist/main.js"
   },
   "scripts": {
-    "build": "webpack-cli --mode production --progress"
+    "build": "rimraf dist/ && tsc -p tsconfig.json"
   },
   "publishConfig": {
     "access": "public"
@@ -17,9 +17,7 @@
   "devDependencies": {
     "@types/node": "^10.9.2",
     "@types/webpack": "^4.4.11",
-    "basic-ftp": "^2.13.2",
-    "chalk": "^2.4.1",
-    "commander": "^2.17.1",
+    "rimraf": "^2.6.3",
     "ts-loader": "^4.5.0",
     "ts-node": "^7.0.1",
     "tslint": "^5.11.0",
@@ -28,6 +26,9 @@
     "webpack-cli": "^3.1.0"
   },
   "dependencies": {
-    "async-retry": "^1.2.3"
+    "async-retry": "^1.2.3",
+    "basic-ftp": "^2.13.2",
+    "chalk": "^2.4.1",
+    "commander": "^2.17.1"
   }
 }
