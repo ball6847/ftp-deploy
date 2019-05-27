@@ -1,5 +1,6 @@
 import commander from "commander"
-import { deploy, error, validateArgs } from "./common"
+import { deploy, validateArgs } from "./lib/client"
+import { error } from "./lib/common"
 
 commander
   .arguments("<local> <remote>")

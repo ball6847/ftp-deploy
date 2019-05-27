@@ -1,9 +1,10 @@
 import retry from "async-retry"
 import { Client } from "basic-ftp"
-import chalk from "chalk"
 import fs from "fs"
 import path from "path"
+import { error, success } from "./common"
 import { IDeploymentInfo, IFtpConnectionInfo } from "./interface"
+
 /**
  * Deploy given directory to remote server
  *
@@ -96,24 +97,4 @@ function parseFtpURL(ftpUrl: string): IFtpConnectionInfo {
     pathname,
     secure: protocol === "ftps:",
   }
-}
-
-/**
- * Log message with red color
- *
- * @param message
- */
-export function error(message: string) {
-  // tslint:disable-next-line:no-console
-  console.log(chalk.red(message))
-}
-
-/**
- * Log message with green color
- *
- * @param message
- */
-export function success(message: string) {
-  // tslint:disable-next-line:no-console
-  console.log(chalk.green(message))
 }
